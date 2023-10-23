@@ -1,7 +1,7 @@
 import { Button } from "react-native"
 import { View, Text } from "react-native"
 
-export default Home = ({ navigation }) => {
+const Home = ({ navigation }) => {
   const loadScene = () => {
     navigation.navigate('some')
   }
@@ -12,3 +12,5 @@ export default Home = ({ navigation }) => {
     </View>
   )
 }
+
+export default Home

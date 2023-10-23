@@ -1,18 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from '../pages/Home';
 import { authRoutes, publicRoutes } from '../routes';
+import { Context } from '../../index';
 
 const Stack = createNativeStackNavigator();
 
 export default function AppRouter() {
-  const isAuth = true
+  const { user } = useContext(Context)
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="profile">
-        {/* <Stack.Screen name='home' component={Home} options={{ title: 'Home' }} /> */}
-        {isAuth && authRoutes.map(({ name, Component, title }) =>
+      <Stack.Navigator initialRouteName="registration">
+        {user.isAuth && authRoutes.map(({ name, Component, title }) =>
           <Stack.Screen key={name} name={name} component={Component} options={{ title }} />
         )}
 

@@ -25,7 +25,7 @@ export const publicRoutes = [
   {
     name: REGISTRATION_ROUTE,
     Component: Auth,
-    title: 'Registration'
+    title: 'Registration',
   },
 
   {
@@ -57,7 +57,7 @@ export const authRoutes = [
   {
     name: LIKED_ROUTE,
     Component: Liked,
-    title: 'Liked Recepts'
+    title: 'Liked'
   },
 
   {
