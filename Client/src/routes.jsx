@@ -13,19 +13,21 @@ export const publicRoutes = [
   {
     name: HOME_ROUTE,
     Component: Home,
-    title: 'Home Page'
+    title: 'Home Page',
   },
 
   {
     name: LOGIN_ROUTE,
     Component: Auth,
-    title: 'Login'
+    title: 'Login',
+    headerLeft: null
   },
 
   {
     name: REGISTRATION_ROUTE,
     Component: Auth,
     title: 'Registration',
+    headerLeft: null
   },
 
   {

@@ -1,4 +1,4 @@
-import { useNavigation, useRoute } from "@react-navigation/native"
+import { useRoute } from "@react-navigation/native"
 import { Button, Input } from "@rneui/themed"
 import React from "react"
 import { Text, View } from "react-native"
