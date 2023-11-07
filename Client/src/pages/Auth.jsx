@@ -3,7 +3,7 @@ import { Button, Input } from "@rneui/themed"
 import React from "react"
 import { Text, View } from "react-native"
 import { SafeAreaProvider } from "react-native-safe-area-context"
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts"
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, TAB_ROUTE } from "../utils/consts"
 
 const Auth = ({ navigation }) => {
   const route = useRoute()

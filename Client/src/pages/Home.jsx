@@ -1,12 +1,12 @@
 import { useContext } from "react"
-import { StyleSheet, View } from "react-native"
+import { ScrollView, StyleSheet, View } from "react-native"
 import { Context } from "../../index"
 import { Card } from "react-native-elements"
 
 const Home = () => {
   const { recept } = useContext(Context)
   return (
-    <View>
+    <ScrollView>
       {recept._recepts.map((recept) => (
         <Card key={recept.id} containerStyle={{ padding: 0, borderRadius: 20 }}>
           <Card.Image
@@ -19,7 +19,7 @@ const Home = () => {
           <View style={homeStyles.overlay} />
         </Card >
       ))}
-    </View >
+    </ScrollView >
   )
 }
 
