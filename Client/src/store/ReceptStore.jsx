@@ -52,6 +52,34 @@ export default class UserStore {
           { name: "Pieprz", amount: '300g' }
         ]
       },
+      {
+        id: 6,
+        receptName: 'Pasta mia',
+        img: 'https://www.thespruceeats.com/thmb/8iAri1JnU2CKFqAW1ZCEKi9lcsg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/skillet-spaghetti-481948-final-hero-01-340363d6ed1c402a9a10b0a176e2a649.jpg',
+        ingredients: [
+          { name: "Sol", amount: "200g" },
+          { name: "Pieprz", amount: '300g' }
+        ]
+      },
+      {
+        id: 7,
+        receptName: 'Pasta mia',
+        img: 'https://www.thespruceeats.com/thmb/8iAri1JnU2CKFqAW1ZCEKi9lcsg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/skillet-spaghetti-481948-final-hero-01-340363d6ed1c402a9a10b0a176e2a649.jpg',
+        ingredients: [
+          { name: "Sol", amount: "200g" },
+          { name: "Pieprz", amount: '300g' }
+        ]
+      },
+      {
+        id: 8,
+        receptName: 'Pasta mia',
+        img: 'https://www.thespruceeats.com/thmb/8iAri1JnU2CKFqAW1ZCEKi9lcsg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/skillet-spaghetti-481948-final-hero-01-340363d6ed1c402a9a10b0a176e2a649.jpg',
+        ingredients: [
+          { name: "Sol", amount: "200g" },
+          { name: "Pieprz", amount: '300g' }
+        ]
+      },
+
     ]
     makeAutoObservable(this)
   }

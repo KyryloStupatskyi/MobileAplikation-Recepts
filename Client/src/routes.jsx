@@ -1,4 +1,4 @@
-import TabNavigation from "./components/TabNavigation"
+import TabNavigation from "./components/Navigation/TabNavigation"
 import AddComment from "./pages/AddComment"
 import AddRecept from "./pages/AddRecept"
 import Auth from "./pages/Auth"
@@ -9,16 +9,18 @@ import Profile from "./pages/Profile"
 import RecepItem from "./pages/RecepItem"
 import UserTop from "./pages/UserTop"
 import { ADD_COMMENTS_ROUTE, ADD_RECEPT_ROUTE, COMMENTS_ROUTE, HOME_ROUTE, LIKED_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE, RECEPT_ROUTE, REGISTRATION_ROUTE, TAB_ROUTE, TOP_ROUTE } from "./utils/consts"
-import HomeIcon from '@mui/icons-material/Home';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import PersonIcon from '@mui/icons-material/Person';
 
 export const publicRoutes = [
+  {
+    name: COMMENTS_ROUTE,
+    Component: Comments,
+    title: 'Comments'
+  },
+
   {
     name: LOGIN_ROUTE,
     Component: Auth,
     title: 'Login',
-    headerLeft: null
   },
 
   {
@@ -32,12 +34,6 @@ export const publicRoutes = [
     name: RECEPT_ROUTE + '/:id',
     Component: RecepItem,
     title: 'Recept'
-  },
-
-  {
-    name: COMMENTS_ROUTE,
-    Component: Comments,
-    title: 'Comments'
   },
 
   {
