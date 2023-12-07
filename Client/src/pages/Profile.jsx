@@ -6,9 +6,10 @@ import { Button, Image } from "react-native-elements";
 import { useContext } from "react";
 import { Context } from "../../index";
 import { Card } from "react-native-elements"
-import { LIKED_ROUTE, LOGIN_ROUTE, RECEPT_ROUTE, TOP_ROUTE } from "../utils/consts";
+import { LOGIN_ROUTE, RECEPT_ROUTE, TOP_ROUTE } from "../utils/consts";
+import { observer } from "mobx-react-lite";
 
-const Profile = ({ navigation }) => {
+const Profile = observer(({ navigation }) => {
   const { recept } = useContext(Context)
   const { user } = useContext(Context)
 
@@ -52,7 +53,7 @@ const Profile = ({ navigation }) => {
       }
     </View >
   )
-}
+})
 
 const profileStyles = StyleSheet.create({
   cardItem: {
