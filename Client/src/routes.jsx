@@ -31,9 +31,9 @@ export const publicRoutes = [
   },
 
   {
-    name: RECEPT_ROUTE + '/:id',
+    name: RECEPT_ROUTE,
     Component: RecepItem,
-    title: 'Recept'
+    title: 'Recept',
   },
 
   {
@@ -62,7 +62,7 @@ export const tabsRoutes = [
     name: HOME_ROUTE,
     Component: Home,
     icon: 'home-outline',
-    color: 'transparent'
+    color: 'transparent',
   },
 
   {

@@ -1,23 +1,29 @@
 import { useContext } from "react"
-import { ScrollView, StyleSheet, View } from "react-native"
+import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native"
 import { Context } from "../../index"
 import { Card } from "react-native-elements"
+import { RECEPT_ROUTE } from "../utils/consts"
 
-const Home = () => {
+const Home = ({ navigation }) => {
+  const pressReceptItem = (receptId) => {
+    navigation.navigate(RECEPT_ROUTE, { receptId })
+  }
   const { recept } = useContext(Context)
   return (
     <ScrollView>
       {recept._recepts.map((recept) => (
-        <Card key={recept.id} containerStyle={{ padding: 0, borderRadius: 20 }}>
-          <Card.Image
-            style={{ width: "100%", height: 250, borderRadius: 20 }}
-            source={{
-              uri: recept.img
-            }}
-          />
-          <Card.Title style={homeStyles.title}>{recept.receptName}</Card.Title>
-          <View style={homeStyles.overlay} />
-        </Card >
+        <TouchableOpacity key={recept.id} onPress={() => { pressReceptItem(recept.id) }}>
+          <Card containerStyle={{ padding: 0, borderRadius: 20 }}>
+            <Card.Image
+              style={{ width: "100%", height: 250, borderRadius: 20 }}
+              source={{
+                uri: recept.img
+              }}
+            />
+            <Card.Title style={homeStyles.title}>{recept.receptName}</Card.Title>
+            <View style={homeStyles.overlay} />
+          </Card >
+        </TouchableOpacity>
       ))}
     </ScrollView >
   )
