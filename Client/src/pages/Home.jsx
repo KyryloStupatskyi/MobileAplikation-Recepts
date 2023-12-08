@@ -1,17 +1,36 @@
-import { useContext } from "react"
-import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native"
+import { useContext, useEffect, useState } from "react"
+import { ScrollView, StyleSheet, TouchableOpacity, View, Text } from "react-native"
 import { Context } from "../../index"
 import { Card } from "react-native-elements"
 import { RECEPT_ROUTE } from "../utils/consts"
+import { getRecepts } from "../api/receptApi"
+import { observer } from "mobx-react-lite"
 
-const Home = ({ navigation }) => {
+const Home = observer(({ navigation }) => {
+  const [recept, setRecept] = useState()
+  const [loading, setLoading] = useState(false)
+  const receptItem = useContext(Context).recept
+
   const pressReceptItem = (receptId) => {
     navigation.navigate(RECEPT_ROUTE, { receptId })
   }
-  const { recept } = useContext(Context)
+
+  useEffect(() => {
+    getRecepts().then(data => {
+      setRecept(data)
+      setLoading(true);
+    })
+  }, [])
+
+  if (!loading) {
+    return (
+      <Text>Loading..</Text>
+    )
+  }
+
   return (
     <ScrollView>
-      {recept._recepts.map((recept) => (
+      {recept.map((recept) => (
         <TouchableOpacity key={recept.id} onPress={() => { pressReceptItem(recept.id) }}>
           <Card containerStyle={{ padding: 0, borderRadius: 20 }}>
             <Card.Image
@@ -27,7 +46,7 @@ const Home = ({ navigation }) => {
       ))}
     </ScrollView >
   )
-}
+})
 
 const homeStyles = StyleSheet.create({
   overlay: {

@@ -41,9 +41,7 @@ export const publicRoutes = [
     Component: UserTop,
     title: 'Top Users'
   },
-]
 
-export const authRoutes = [
   {
     name: ADD_COMMENTS_ROUTE,
     Component: AddComment,
@@ -55,6 +53,20 @@ export const authRoutes = [
     Component: AddRecept,
     title: 'Add a Recept',
   },
+]
+
+export const authRoutes = [
+  // {
+  //   name: ADD_COMMENTS_ROUTE,
+  //   Component: AddComment,
+  //   title: 'Add a Comment'
+  // },
+
+  // {
+  //   name: ADD_RECEPT_ROUTE,
+  //   Component: AddRecept,
+  //   title: 'Add a Recept',
+  // },
 ]
 
 export const tabsRoutes = [

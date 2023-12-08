@@ -2,10 +2,11 @@ import React, { useContext } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { authRoutes, publicRoutes } from '../../routes';
 import { Context } from '../../../index';
-import { HOME_ROUTE, REGISTRATION_ROUTE, TAB_ROUTE } from '../../utils/consts';
+import { ADD_RECEPT_ROUTE, HOME_ROUTE, REGISTRATION_ROUTE, TAB_ROUTE } from '../../utils/consts';
 import TabNavigation from './TabNavigation';
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
+import { observer } from 'mobx-react-lite';
 
 const Stack = createNativeStackNavigator();
 

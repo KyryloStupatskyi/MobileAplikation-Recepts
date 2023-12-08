@@ -6,7 +6,7 @@ import { Button, Image } from "react-native-elements";
 import { useContext } from "react";
 import { Context } from "../../index";
 import { Card } from "react-native-elements"
-import { LOGIN_ROUTE, RECEPT_ROUTE, TOP_ROUTE } from "../utils/consts";
+import { ADD_RECEPT_ROUTE, LOGIN_ROUTE, RECEPT_ROUTE } from "../utils/consts";
 import { observer } from "mobx-react-lite";
 
 const Profile = observer(({ navigation }) => {
@@ -16,11 +16,19 @@ const Profile = observer(({ navigation }) => {
   const pressReceptItem = (receptId) => {
     navigation.navigate(RECEPT_ROUTE, { receptId })
   }
+
+  const click = () => {
+    if (user._isAuth === true) {
+      return navigation.navigate(ADD_RECEPT_ROUTE)
+    }
+
+    navigation.navigate(LOGIN_ROUTE)
+  }
   return (
     <View style={{ flex: 1, padding: 30 }}>
       {user._isAuth ?
         <>
-          <View style={{ display: 'flex', flexDirection: 'row', gap: 40, borderBottomWidth: 1, paddingBottom: 20 }}>
+          <View style={{ display: 'flex', flexDirection: 'row', gap: 40, borderBottomWidth: 1, paddingBottom: 20, marginBottom: 10 }}>
             <Image source={img} style={{ width: 70, height: 70 }} />
             <View style={{ marginTop: 3 }}>
               <Text style={{ fontWeight: 'bold', fontSize: 20 }}>Adrianna Swistak</Text>
@@ -30,6 +38,8 @@ const Profile = observer(({ navigation }) => {
               </View>
             </View>
           </View>
+
+          <Button title="Add new Recept" onPress={click} />
 
           <ScrollView style={{ marginTop: 30 }}>
             {recept._recepts.map((recept) => (
