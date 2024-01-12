@@ -5,7 +5,16 @@ export default class UserStore {
     this._recepts = []
 
     this._liked = []
+    this._isRemoved = false
     makeAutoObservable(this)
+  }
+
+  setRemoved(bool) {
+    this._isRemoved = bool
+  }
+
+  get removed() {
+    return this._isRemoved
   }
 
   setRecepts(recept) {
@@ -22,6 +31,10 @@ export default class UserStore {
 
   setLiked(recept) {
     this._liked.push(recept)
+  }
+
+  addRecept(recept) {
+    this._recepts.push(recept)
   }
 
   get liked() {

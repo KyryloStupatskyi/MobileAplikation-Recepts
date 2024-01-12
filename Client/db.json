@@ -3,6 +3,7 @@
     {
       "id": 1,
       "receptName": "Pasta mia",
+      "userId": 2,
       "img": "https://www.thespruceeats.com/thmb/8iAri1JnU2CKFqAW1ZCEKi9lcsg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/skillet-spaghetti-481948-final-hero-01-340363d6ed1c402a9a10b0a176e2a649.jpg",
       "ingredients": [
         {
@@ -88,6 +89,7 @@
     {
       "id": 2,
       "receptName": "Ziemniaki po Francuzku",
+      "userId": 2,
       "img": "https://praktykulinarni.com/wp-content/uploads/2020/12/kurczak-ziemniaki-hasselback-1024x682.jpg",
       "ingredients": [
         {
@@ -172,6 +174,7 @@
     },
     {
       "receptName": "somerecept",
+      "userId": 2,
       "img": "https://klopotenko.com/wp-content/uploads/2022/05/brauni-s-kofe_siteweb-1000x600.jpg?v=1657617036",
       "ingredients": [
         {
@@ -230,6 +233,12 @@
       "receptId": 3,
       "userId": 2,
       "id": 7
+    },
+    {
+      "comments": "hui",
+      "receptId": 1,
+      "userId": 2,
+      "id": 8
     }
   ],
   "users": [
@@ -250,6 +259,18 @@
       "password": "1234",
       "name": "Kyrylo",
       "id": 3
+    },
+    {
+      "email": "sopme",
+      "password": "1234",
+      "name": "Anton",
+      "id": 4
+    },
+    {
+      "email": "anotherAcc",
+      "password": "1234",
+      "name": "Lena",
+      "id": 5
     }
   ],
   "profile": {

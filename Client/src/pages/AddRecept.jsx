@@ -4,8 +4,12 @@ import { View, Text, TextInput, Button, FlatList, ScrollView } from 'react-nativ
 import { postData } from '../api/receptApi';
 import { Context } from '../../index';
 import { HOME_ROUTE } from '../utils/consts';
+import { observer } from 'mobx-react-lite';
 
-const AddRecept = ({ navigation }) => {
+const AddRecept = observer(({ navigation }) => {
+  const { user } = useContext(Context)
+  const { recept } = useContext(Context)
+
   const [receptName, setReceptName] = useState('')
   const [url, setUrl] = useState('')
   const [data, setData] = useState({ ingredients: [] })
@@ -41,26 +45,26 @@ const AddRecept = ({ navigation }) => {
     })
   }
 
-
   const sendData = async () => {
+    const receptItem = await postData(receptName, url, data, cooking, user._user.id)
+    recept.addRecept(receptItem)
     navigation.navigate(HOME_ROUTE)
-    await postData(receptName, url, data, cooking)
   }
+
   return (
     <View style={{ flex: 1, height: "100%", padding: 15, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <ScrollView style={{ flex: 1, height: '100%' }}>
         <Input containerStyle={{ borderWidth: 1, borderColor: "gray", borderRadius: 20, paddingTop: 5, marginBottom: 20 }} placeholder='Put ur recept name or recept title' onChangeText={text => setReceptName(text)} />
         <Input containerStyle={{ borderWidth: 1, borderColor: "gray", borderRadius: 20, paddingTop: 5, marginBottom: 20 }} placeholder='Put recept image url' onChangeText={text => setUrl(text)} />
-
-        <Text style={{ fontSize: 20, marginBottom: 10 }}>Ingridients</Text>
+        <Text style={{ fontSize: 20, marginBottom: 30 }}>Ingridients</Text>
 
         <View style={{ display: 'flex', justifyContent: 'space-between' }}>
           <FlatList
             data={data.ingredients}
             renderItem={({ item, index }) => (
-              <View style={{ marginTop: 20 }}>
-                <Input containerStyle={{ borderWidth: 1, borderColor: "gray", borderRadius: 20, paddingTop: 5, marginBottom: 20 }} placeholder='Ingridient name' onChangeText={value => addIngridientsToData(index, 'name', value)} />
-                <Input containerStyle={{ borderWidth: 1, borderColor: "gray", borderRadius: 20, paddingTop: 5, marginBottom: 20 }} placeholder='Amount' onChangeText={value => addIngridientsToData(index, 'amount', value)} />
+              <View style={{ display: 'flex', flexDirection: 'row', gap: 10 }}>
+                <Input containerStyle={{ width: '60%', fontSize: 10 }} placeholder='Ingridient name' onChangeText={value => addIngridientsToData(index, 'name', value)} />
+                <Input containerStyle={{ width: '30%' }} placeholder='Amount' onChangeText={value => addIngridientsToData(index, 'amount', value)} />
               </View>
             )}
             keyExtractor={(item, index) => index.toString()}
@@ -91,6 +95,6 @@ const AddRecept = ({ navigation }) => {
       </View>
     </View >
   );
-}
+})
 
 export default AddRecept;

@@ -7,9 +7,10 @@ import { getRecepts } from "../api/receptApi"
 import { observer } from "mobx-react-lite"
 
 const Home = observer(({ navigation }) => {
-  const [recept, setRecept] = useState()
+  const { recept } = useContext(Context)
+
+  const [receptItem, setRecept] = useState()
   const [loading, setLoading] = useState(false)
-  const receptItem = useContext(Context).recept
 
   const pressReceptItem = (receptId) => {
     navigation.navigate(RECEPT_ROUTE, { receptId })
@@ -19,8 +20,9 @@ const Home = observer(({ navigation }) => {
     getRecepts().then(data => {
       setRecept(data)
       setLoading(true);
+      recept.setRemoved(false)
     })
-  }, [])
+  }, [recept._recepts.length, recept._isRemoved])
 
   if (!loading) {
     return (
@@ -30,7 +32,7 @@ const Home = observer(({ navigation }) => {
 
   return (
     <ScrollView>
-      {recept.map((recept) => (
+      {receptItem.map((recept) => (
         <TouchableOpacity key={recept.id} onPress={() => { pressReceptItem(recept.id) }}>
           <Card containerStyle={{ padding: 0, borderRadius: 20 }}>
             <Card.Image
