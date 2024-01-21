@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { View, Modal, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native"
-import { Context } from "../../index";
+import { Context } from '../../App';
 import { Ionicons } from '@expo/vector-icons';
 import { Button } from "react-native-elements";
 import { ADD_COMMENTS_ROUTE, LOGIN_ROUTE } from "../utils/consts";

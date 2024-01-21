@@ -1,7 +1,7 @@
 import { Card } from "@rneui/base";
 import React, { useContext } from "react";
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from "react-native";
-import { Context } from "../../index";
+import { Context } from '../../App';
 import { observer } from "mobx-react-lite";
 import { RECEPT_ROUTE } from "../utils/consts";
 

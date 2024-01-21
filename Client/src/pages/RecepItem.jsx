@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useContext } from "react";
 import { View, Text, ScrollView } from "react-native"
-import { Context } from "../../index";
+import { Context } from '../../App';
 import { Button, Image } from "react-native-elements";
 import { useState } from "react";
 import Comments from "./Comments";

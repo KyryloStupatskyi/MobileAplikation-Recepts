@@ -4,7 +4,7 @@ import img from '../../assets/img.png'
 import flg from '../../assets/flg.jpg'
 import { Button, Image } from "react-native-elements";
 import { useContext } from "react";
-import { Context } from "../../index";
+import { Context } from '../../App';
 import { Card } from "react-native-elements"
 import { ADD_RECEPT_ROUTE, LOGIN_ROUTE, RECEPT_ROUTE } from "../utils/consts";
 import { observer } from "mobx-react-lite";

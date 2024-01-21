@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react"
 import { ScrollView, StyleSheet, TouchableOpacity, View, Text } from "react-native"
-import { Context } from "../../index"
 import { Card } from "react-native-elements"
 import { RECEPT_ROUTE } from "../utils/consts"
 import { getRecepts } from "../api/receptApi"
 import { observer } from "mobx-react-lite"
+import { Context } from '../../App';
 
 const Home = observer(({ navigation }) => {
   const { recept } = useContext(Context)

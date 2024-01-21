@@ -7,7 +7,7 @@ import { HOME_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, TAB_ROUTE } from "../utils
 import { useState } from "react"
 import { registration, login } from "../api/userApi"
 import { useContext } from "react"
-import { Context } from "../../index"
+import { Context } from '../../App';
 
 const Auth = ({ navigation }) => {
   const route = useRoute()

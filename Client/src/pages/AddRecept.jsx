@@ -2,9 +2,9 @@ import { Input } from '@rneui/themed';
 import React, { useContext, useState } from 'react';
 import { View, Text, TextInput, Button, FlatList, ScrollView } from 'react-native';
 import { postData } from '../api/receptApi';
-import { Context } from '../../index';
 import { HOME_ROUTE } from '../utils/consts';
 import { observer } from 'mobx-react-lite';
+import { Context } from '../../App';
 
 const AddRecept = observer(({ navigation }) => {
   const { user } = useContext(Context)

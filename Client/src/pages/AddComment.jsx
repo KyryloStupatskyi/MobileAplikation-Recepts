@@ -1,10 +1,10 @@
 import { Input } from "@rneui/base";
 import React, { useContext, useState } from "react";
 import { View, Text } from "react-native";
-import { Context } from "../../index";
 import { Button } from "@rneui/themed";
 import { addComment } from "../api/userApi";
 import { HOME_ROUTE } from "../utils/consts";
+import { Context } from "../../App";
 
 const AddComment = ({ route, navigation }) => {
   const { user } = useContext(Context)
