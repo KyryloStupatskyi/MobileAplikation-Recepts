@@ -8,8 +8,13 @@ import { useState } from "react"
 import { registration, login } from "../api/userApi"
 import { useContext } from "react"
 import { Context } from '../../App';
+import * as Location from 'expo-location';
+import { useEffect } from "react"
+import { getCountry } from "react-native-localize"
 
-const Auth = ({ navigation }) => {
+
+
+function Auth({ navigation }) {
   const route = useRoute()
   const isRegistration = route.name === REGISTRATION_ROUTE
   const { user } = useContext(Context)
@@ -17,6 +22,8 @@ const Auth = ({ navigation }) => {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const [name, setName] = useState()
+  const [country, setCountry] = useState('')
+  const [showLocationButton, setShowLocationButton] = useState(true);
 
   const click = async () => {
     let candidate
@@ -33,6 +40,30 @@ const Auth = ({ navigation }) => {
     }
   }
 
+  const getCountry = async () => {
+    try {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+
+      if (status !== 'granted') {
+        console.log('Please grant location permissions');
+        return;
+      }
+
+      const currentLocation = await Location.getCurrentPositionAsync({});
+      const reverseGeocode = await Location.reverseGeocodeAsync({
+        longitude: currentLocation.coords.longitude,
+        latitude: currentLocation.coords.latitude,
+      });
+
+      if (reverseGeocode && reverseGeocode.length > 0) {
+        setCountry(reverseGeocode[0].country);
+        setShowLocationButton(false); // Скрываем кнопку после успешного получения страны
+      }
+    } catch (error) {
+      console.error('Error getting location:', error);
+    }
+  };
+
   return (
     <SafeAreaProvider>
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center", padding: 15, height: '100%' }}>
@@ -40,10 +71,27 @@ const Auth = ({ navigation }) => {
         <Input containerStyle={{ borderWidth: 1, borderColor: "gray", borderRadius: 20, paddingTop: 5, marginTop: 20 }} placeholder="Enter password..." onChangeText={text => setPassword(text)} />
         {isRegistration ? <Input containerStyle={{ borderWidth: 1, borderColor: "gray", borderRadius: 20, paddingTop: 5, marginTop: 20 }} placeholder="Enter your name and surname..." onChangeText={text => setName(text)} /> : null}
 
-        <View style={{ flexDirection: 'row', justifyContent: "space-between", width: "100%", padding: 10 }}>
-          <Text>Country</Text>
-          <Text style={{ textDecorationLine: 'underline', color: "blue" }}>Poland</Text>
-        </View>
+        {showLocationButton ? (
+          <View style={{ flexDirection: 'row', justifyContent: "space-between", width: "100%", padding: 15 }}>
+            <Text>Country: {country}</Text>
+            <Button
+              title="Get location"
+              buttonStyle={{
+                backgroundColor: 'rgba(111, 202, 186, 1)',
+                borderRadius: 15,
+                marginHorizontal: 0,
+                padding: 5,
+              }}
+              titleStyle={{ fontSize: 16 }}
+              onPress={() => getCountry()}
+            />
+          </View>
+        ) : (
+          <View style={{ flexDirection: 'row', justifyContent: "space-between", width: "100%", padding: 15 }}>
+            <Text>Country: {country}</Text>
+          </View>
+        )}
+
 
         <View style={{ display: "flex", flexDirection: "row", alignItems: "center", marginTop: 20 }}>
           <Text>{isRegistration ? "Already have an account?" : "Dont have an account?"}</Text>
@@ -61,7 +109,7 @@ const Auth = ({ navigation }) => {
           <Button title={isRegistration ? "Register" : "Login"} buttonStyle={{ backgroundColor: 'rgba(111, 202, 186, 1)', borderRadius: 15, padding: 10 }} onPress={click} />
         </View>
       </View>
-    </SafeAreaProvider >
+    </SafeAreaProvider>
   )
 }
 

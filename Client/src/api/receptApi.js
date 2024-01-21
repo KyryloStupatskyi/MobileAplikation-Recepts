@@ -22,7 +22,7 @@ export const getAllReceptByUserId = async (userId) => {
   try {
     const { data } = await $host.get('/recepts')
 
-    const recepts = data.filter(item => item.userId === userId)
+    const recepts = data.filter(item => item.userId === +userId)
 
     if (recepts && recepts.length > 0) {
       return recepts
