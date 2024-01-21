@@ -112,3 +112,5 @@ const profileStyles = StyleSheet.create({
     borderRadius: 20
   }
 })
+
+export default Profile
