@@ -9,6 +9,7 @@ import { Card } from "react-native-elements"
 import { ADD_RECEPT_ROUTE, LOGIN_ROUTE, RECEPT_ROUTE } from "../utils/consts";
 import { observer } from "mobx-react-lite";
 import { deleteRecept, getAllReceptByUserId } from "../api/receptApi";
+import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 
 const Profile = observer(({ navigation }) => {
   const { recept } = useContext(Context)
@@ -16,6 +17,8 @@ const Profile = observer(({ navigation }) => {
 
   const [receptItems, setReceptsItems] = useState()
   const [loading, setLoading] = useState(false)
+
+  const [imageUri, setimageUri] = useState('');
 
   const pressReceptItem = (receptId) => {
     navigation.navigate(RECEPT_ROUTE, { receptId })
@@ -28,6 +31,30 @@ const Profile = observer(({ navigation }) => {
 
     navigation.navigate(LOGIN_ROUTE)
   }
+
+  const openCamera = () => {
+    const options = {
+      storageOption: {
+        path: 'images',
+        mediaType: 'photo',
+      },
+      includeBase64: true,
+    };
+
+    launchCamera(options, response => {
+      console.log('Response = ', response);
+      if (response.didCancel) {
+        console.log('User cancelles image picker');
+      } else if (response.error) {
+        console.log('imagePicker Error: ', response.error);
+      } else if (response.Button) {
+        console.log('User tapped custom button: ', response.Button);
+      } else {
+        const source = {uri: 'data:image/jpeg;base64,' + response.base64}
+      }
+    });
+
+  };
 
   const foo = async (id) => {
     try {
@@ -65,6 +92,8 @@ const Profile = observer(({ navigation }) => {
                 <Text >Recepts count - {receptItems ? receptItems.length : 0}</Text>
                 <Text>{user._user.country}</Text>
               </View>
+              <Button title="Add new foto" onPress={() => {openCamera();}} />
+              
             </View>
           </View>
 
