@@ -55,15 +55,15 @@ const Profile = observer(({ navigation }) => {
 
   return (
     <View style={{ flex: 1, padding: 30 }}>
-      {user._isAuth && receptItems ?
+      {user._isAuth ?
         <>
           <View style={{ display: 'flex', flexDirection: 'row', gap: 40, borderBottomWidth: 1, paddingBottom: 20, marginBottom: 10 }}>
             <Image source={img} style={{ width: 70, height: 70 }} />
             <View style={{ marginTop: 3 }}>
               <Text style={{ fontWeight: 'bold', fontSize: 20 }}>{user._user.name}</Text>
               <View style={{ marginTop: 10, display: 'flex', flexDirection: 'row', gap: 40 }}>
-                <Text >Recepts count - {receptItems.length}</Text>
-                <Image source={flg} style={{ width: 40, height: 30, marginTop: -2 }} />
+                <Text >Recepts count - {receptItems ? receptItems.length : 0}</Text>
+                <Text>{user._user.country}</Text>
               </View>
             </View>
           </View>

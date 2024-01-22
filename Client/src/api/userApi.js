@@ -19,7 +19,7 @@ export const login = async (email, password) => {
 }
 
 
-export const registration = async (email, password, name) => {
+export const registration = async (email, password, name, country) => {
   try {
     const { data } = await $host.get('/users')
 
@@ -30,7 +30,7 @@ export const registration = async (email, password, name) => {
     }
 
     if (!candidate) {
-      const data = await $host.post('/users', { email, password, name })
+      const data = await $host.post('/users', { email, password, name, country })
       return data
     }
   } catch (error) {
